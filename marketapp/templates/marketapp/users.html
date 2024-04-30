@@ -1,0 +1,11 @@
+{% extends 'marketapp/base.html' %}
+{% block title %} Покупатели {% endblock %}
+
+
+{% block content %}
+<h1>список клиентов</h1> <br>
+{% for user in users %}
+    <p>id: {{ user.id }}    Имя: {{ user.name }} Email: {{ user.email }} телефон: {{ user.phone }} адрес: {{ user.address}}</p>
+
+{%  endfor %}
+{% endblock %}

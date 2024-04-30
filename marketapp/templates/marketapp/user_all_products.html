@@ -1,0 +1,15 @@
+{% extends 'marketapp/base.html' %}
+
+{% block title %}{{ user.name }}'s Products for last  {{ days }} days {% endblock %}
+
+{% block content %}
+    <h2>все продукты пользователя: {{ user.name }} (id={{ user.id}}) за последние {{ days }} дн</h2>
+    {% for product in product_set %}
+    <ul>
+        <li>
+            {{ product }}
+        </li>
+    </ul>
+
+    {% endfor %}
+{% endblock %}

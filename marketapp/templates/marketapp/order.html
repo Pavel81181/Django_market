@@ -1,0 +1,18 @@
+{% extends 'marketapp/base.html' %}
+
+{% block title %} Title {% endblock %}
+
+
+{% block content %}
+<h1>Список заказа в интернет магазине</h1>
+        <p>
+            id заказа={{ order.id }} <br>
+            Клиент: id={{order.customer.id}} {{ order.customer }} <br>
+            {{ order.products.all }}
+            <br> общая стоимость заказа: {{ order.total_price }} <br>
+            дата создания заказа: {{ order.date_ordered }} <br>
+        </p>
+
+
+
+{% endblock %}
