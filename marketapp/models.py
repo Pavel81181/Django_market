@@ -19,7 +19,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     stock = models.DecimalField(max_digits=8, decimal_places=2)
     add_date = models.DateField(auto_now_add=True)
-    # image_product = models.ImageField(upload_to="images/")
+    image_product = models.ImageField(upload_to="images/")
 
     def __str__(self):
         return f'Productname: {self.name}, description: {self.description}, price: {self.price}, add_date: {self.add_date}'

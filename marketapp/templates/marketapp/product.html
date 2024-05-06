@@ -9,6 +9,7 @@
 <p>описание: {{ product.description}}</p>
 <p>дата создания: {{ product.add_date }}</p>
 <br>
-<!--{{ product.image_product }}-->
+<img alt="{{ product.name }}" src="{{ product.image_product }}">
+{{ product.image_product }}
 
 {% endblock %}

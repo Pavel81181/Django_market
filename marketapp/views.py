@@ -4,7 +4,7 @@ import logging
 from marketapp.models import User, Order, Product
 from datetime import datetime, timedelta
 from django.core.files.storage import FileSystemStorage
-# from .forms import ProductForm, ChoiceProductById, ChoiceProductByClientBydays
+from .forms import ProductForm, ChoiceProductById, ChoiceProductByClientBydays
 from django.shortcuts import render, get_object_or_404, redirect
 
 logger = logging.getLogger(__name__)  # переменная для логирования
@@ -85,3 +85,31 @@ def user_products_sorted(request, user_id: int, days: int):
                 product_set.append(product)
 
     return render(request, 'marketapp/user_all_products.html',{'user': user, 'product_set': product_set, 'days': days})
+
+
+# представление для ввода данных о продукте через форму и сохранение изображения продукта на сервер
+def product_form(request, id_product: int):
+    product = get_object_or_404(Product, pk=id_product)
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product.name = request.POST["name"]
+            product.description = request.POST["description"]
+            product.price = request.POST["price"]
+            product.stock = request.POST["stock"]
+            image = form.cleaned_data['image']
+            fs = FileSystemStorage()
+            fs.save(image.name, image)                                 #сохранение image на сервер
+            if "image" in request.FILES:
+                product.image_product = request.FILES["image"]  # запись Image в переменную БД
+            product.save()
+            logger.info(f"Product {product.name} is changed successfully")
+            return redirect("product", id_product=product.id)
+    else:
+        form = ProductForm()
+
+    context = {
+        "form": form,
+        "product": product,
+    }
+    return render(request, "marketapp/product_form.html", context=context)
