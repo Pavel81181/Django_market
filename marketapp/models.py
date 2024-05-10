@@ -33,3 +33,4 @@ class Order(models.Model):
 
     def __str__(self):
         return f'customer: {self.customer.name}, products: {self.products.all()}, total_price: {self.total_price}, date: {self.date_ordered}'
+

@@ -113,3 +113,54 @@ def product_form(request, id_product: int):
         "product": product,
     }
     return render(request, "marketapp/product_form.html", context=context)
+
+# # форма для выбора  продукции по id для формы редактирования продукта
+# def choice_product_by_id(request):
+#     if request.method == "POST":
+#         form = ChoiceProductById(request.POST, request.FILES)
+#         if form.is_valid():
+#             id_product = request.POST['id_product']
+#
+#             return redirect("product_form", id_product)
+#     else:
+#         form = ChoiceProductById()
+#
+#     context = {
+#         "form": form
+#     }
+#     return render(request, "shop_app/choice_product_form.html", context=context)
+#
+#
+# #форма для выбора клиента и кол дней
+# def choice_products_by_client_by_days(request):
+#     if request.method == "POST":
+#         form = ChoiceProductByClientBydays(request.POST, request.FILES)
+#         if form.is_valid():
+#             id_client = request.POST['id_client']
+#             days = request.POST['days']
+#
+#             return redirect("client_products_sorted", id_client, days)
+#     else:
+#         form = ChoiceProductByClientBydays()
+#
+#     context = {
+#         "form": form
+#     }
+#     return render(request, "shop_app/choice_product_days_form.html", context=context)
+#
+#
+# # форма для выбора продукции
+# def choice_product(request):
+#     if request.method == "POST":
+#         form = ChoiceProductById(request.POST, request.FILES)
+#         if form.is_valid():
+#             id_product = request.POST['id_product']
+#
+#             return redirect("product", id_product)
+#     else:
+#         form = ChoiceProductById()
+#
+#     context = {
+#         "form": form
+#     }
+#     return render(request, "shop_app/choice_product_form.html", context=context)
