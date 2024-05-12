@@ -6,8 +6,6 @@ def reset_quantity(modeladmin, request, queryset):
 
 
 
-
-
 class ProductAdmin(admin.ModelAdmin):
     """Список продуктов"""
     list_display = ['name', 'price', 'stock']
@@ -16,6 +14,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['description']
     search_help_text = 'Поиск по полю Описание продукта (description)'
     actions = [reset_quantity]
+
 
     """Отдельный продукт."""
     # fields = ['name', 'description', 'price', 'add_date', 'rating']
